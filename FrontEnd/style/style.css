@@ -1,0 +1,57 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('fonts/Poppins-Light.woff2') format('woff2'),
+         url('fonts/Poppins-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Cinzel';
+    src: url('../fonts/Cinzel-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    border: 0px;
+    margin: 0px;
+    animation: brilho 5s infinite;
+  }
+  *{
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
+  @keyframes brilho {
+    0% {
+      background-color: #333333; /* Cinza escuro */
+    }
+    50% {
+      background-color: #555555; /* Cinza médio */
+    }
+    100% {
+      background-color: #333333; /* Cinza escuro */
+    }
+  }
+#section_home{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    border: 0px;
+    margin: 0px;
+}
+#linha_loja{
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+}
+#titulo{
+    width: 400px;
+    height: 40px;
+    color: aliceblue;
+    font-weight: 400;
+    text-align: left;
+}
