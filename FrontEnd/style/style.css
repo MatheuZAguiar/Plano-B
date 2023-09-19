@@ -1,24 +1,14 @@
-@font-face {
-    font-family: 'Poppins';
-    src: url('fonts/Poppins-Light.woff2') format('woff2'),
-         url('fonts/Poppins-Light.woff') format('woff');
-    font-weight: 300;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'Cinzel';
-    src: url('../fonts/Cinzel-Regular.ttf') format('ttf');
-    font-weight: normal;
-    font-style: normal;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
   body {
+    font-family: 'Cinzel', sans-serif;
     display: flex;
     flex-direction: column;
     width: 100vw;
     height: 100vh;
     border: 0px;
     margin: 0px;
-    animation: brilho 5s infinite;
+    animation: brilho 8s infinite;
   }
   *{
     border: 0;
@@ -36,22 +26,80 @@
       background-color: #333333; /* Cinza escuro */
     }
   }
+  @keyframes luzIntermitente {
+    0% {
+      text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+    }
+    50% {
+      text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+    }
+    100% {
+      text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+    }
+  }
 #section_home{
     display: flex;
     flex-direction: column;
     width: 100vw;
     border: 0px;
-    margin: 0px;
+    margin-top: 20px;
 }
 #linha_loja{
     display: flex;
     justify-content: center;
+    padding: 0;
+    border: 0;
+    margin: 0;
     width: 100vw;
 }
-#titulo{
-    width: 400px;
-    height: 40px;
-    color: aliceblue;
-    font-weight: 400;
-    text-align: left;
+#titulo {
+  width: 40%;
+  height: 100%;
+  color: aliceblue;
+  text-align: center;
+  font-family: 'Cinzel', sans-serif;
+  position: relative;
+  overflow: hidden;
+  animation: luzIntermitente 8s infinite;
+}
+
+#titulo::before,
+#titulo::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: aliceblue;
+  animation: pontosVolta 5s linear infinite;
+}
+
+#titulo::before {
+  left: 0;
+  top: 0;
+  transform-origin: left center;
+}
+
+#titulo::after {
+  right: 0;
+  bottom: 0;
+  transform-origin: right center;
+}
+
+@keyframes pontosVolta {
+  0%, 100% {
+    width: 100%;
+    transform: scaleX(1) rotateX(0deg);
+  }
+  25% {
+    width: 0;
+    transform: scaleX(0) rotateX(90deg);
+  }
+  50% {
+    height: 0;
+    transform: scaleY(0) rotateY(90deg);
+  }
+  75% {
+    height: 2px;
+    transform: scaleY(1) rotateY(0deg);
+  }
 }
