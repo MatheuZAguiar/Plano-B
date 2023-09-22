@@ -1,3 +1,3 @@
 function redirectToHome() {
-    window.location.href = '#section_home';
-}
+    window.location.href = "Home.html";
+  }

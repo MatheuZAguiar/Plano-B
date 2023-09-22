@@ -37,7 +37,7 @@
       text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
     }
   }
-#section_home{
+section{
     display: flex;
     flex-direction: column;
     width: 100vw;
@@ -52,6 +52,7 @@
     border: 0;
     margin: 0;
     width: 100vw;
+    height: 100%;
 }
 #titulo {
   width: 40%;
@@ -62,8 +63,8 @@
   position: relative;
   overflow: hidden;
   animation: luzIntermitente 8s infinite;
-  text-wrap: nowrap;
   cursor: pointer;
+  text-decoration: none;
 }
 
 #titulo::before,
@@ -106,10 +107,94 @@
     transform: scaleY(1) rotateY(0deg);
   }
 }
-
 .link_sobre{
   text-decoration: none;
-  text-align: center;
   color: aliceblue;
-  cursor: pointer;
+}
+
+/* Estilo para a seção de informações de contato */
+.info-contato {
+  background-color: #f5f5f5; /* Cor de fundo */
+  padding: 20px; /* Espaçamento interno */
+  border-radius: 10px; /* Cantos arredondados */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  margin: 20px; /* Espaçamento externo */
+}
+
+.info-contato h2 {
+  font-size: 24px; /* Tamanho da fonte para o título */
+  color: #333; /* Cor do texto do título */
+  margin-bottom: 10px; /* Espaçamento inferior */
+}
+
+.info-contato p {
+  font-size: 16px; /* Tamanho da fonte para o texto */
+  color: #555; /* Cor do texto */
+  margin-bottom: 8px; /* Espaçamento inferior */
+}
+
+.info-contato strong {
+  font-weight: bold; /* Texto em negrito */
+  color: #333; /* Cor do texto em negrito */
+}
+
+.info-contato a {
+  color: #007bff; /* Cor do link */
+  text-decoration: none; /* Remover sublinhado do link */
+}
+
+.info-contato a:hover {
+  text-decoration: underline; /* Adicionar sublinhado ao passar o mouse sobre o link */
+}
+
+.contato-item:nth-child(odd) {
+  background-color: #f0f0f0; /* Cor de fundo para as divs ímpares */
+}
+
+.contato-item:nth-child(even) {
+  background-color: #e0e0e0; /* Cor de fundo para as divs pares */
+}
+
+.contato-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px; /* Espaçamento interno para as divs de contato */
+}
+
+.icone-contato {
+  margin-right: 10px;
+}
+
+.icone-contato img {
+  width: 24px; /* Ajuste o tamanho do ícone conforme necessário */
+  height: 24px; /* Ajuste o tamanho do ícone conforme necessário */
+}
+
+.secao-sobre {
+  margin: 20px;
+  padding: 20px;
+  background-color: #f4f4f4; /* Cor de fundo */
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.secao-sobre h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.secao-sobre p {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+footer {
+  text-align: center;
+  background-color: #333333;
+  color: white;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
