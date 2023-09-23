@@ -1,26 +1,82 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CIKI - Moda Feminina</title>
     <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/Celular.css">
     <link rel="icon" href="./imagens/woman-clothes.png" type="image/png">
     <script src="js/main.js"></script>
 </head>
+
 <body>
 
-<!-- Seção Home -->
-<section>
-    <div id="linha_loja">
-        <a class="link_sobre" href="Sobre_Nos.html">Sobre Nós</a>
-        <h1 id="titulo" onclick="redirectToHome()">CIKI</h1></a>
-        <a class="link_sobre" href="Contatos.html">Contato</a>
-    </div>
+    <!-- Seção Home -->
+    <section>
+        <div id="linha_loja">
+            <a class="link_sobre" href="Sobre_Nos.html">Sobre Nós</a>
+            <h1 id="titulo" onclick="redirectToHome()">CIKI</h1></a>
+            <a class="link_sobre" href="Contatos.html">Contato</a>
+        </div>
 
-</section>
+        <h2>Nossos Produtos</h2>
+
+        <div id="container_produtos">
+
+        <div class="produto" id="produto-1">
+            <img src="https://source.unsplash.com/800x600/?dress" alt="Vestido Floral">
+            <h3>Vestido Floral</h3>
+            <p>R$ 99.99</p>
+            <button onclick="adicionarProdutoAoCarrinho(1)">Adicionar ao Carrinho</button>
+        </div>
+
+        <div class="produto" id="produto-2">
+            <img src="https://source.unsplash.com/800x600/?summer-blouse" alt="Blusa de Verão">
+            <h3>Blusa de Verão</h3>
+            <p>R$ 49.99</p>
+            <button onclick="adicionarProdutoAoCarrinho(2)">Adicionar ao Carrinho</button>
+        </div>
+
+        <div class="produto" id="produto-3">
+            <img src="https://source.unsplash.com/800x600/?skinny-jeans" alt="Calça Jeans Skinny">
+            <h3>Calça Jeans Skinny</h3>
+            <p>R$ 79.99</p>
+            <button onclick="adicionarProdutoAoCarrinho(3)">Adicionar ao Carrinho</button>
+        </div>
+
+        <div class="produto" id="produto-4">
+            <img src="https://source.unsplash.com/800x600/?high-heels" alt="Sapato de Salto Alto">
+            <h3>Sapato de Salto Alto</h3>
+            <p>R$ 129.99</p>
+            <button onclick="adicionarProdutoAoCarrinho(4)">Adicionar ao Carrinho</button>
+        </div>
+
+        <div class="produto" id="produto-5">
+            <img src="https://source.unsplash.com/800x600/?elegant-purse" alt="Bolsa Elegante">
+            <h3>Bolsa Elegante</h3>
+            <p>R$ 69.99</p>
+            <button onclick="adicionarProdutoAoCarrinho(5)">Adicionar ao Carrinho</button>
+        </div>
+
+        <div class="produto" id="produto-6">
+            <img src="https://source.unsplash.com/800x600/?pearl-necklace" alt="Colar de Pérolas">
+            <h3>Colar de Pérolas</h3>
+            <p>R$ 29.99</p>
+            <button onclick="adicionarProdutoAoCarrinho(6)">Adicionar ao Carrinho</button>
+        </div>
+
+        </div>
+        <!-- Botão de Carrinho Flutuante -->
+        <a href="Carrinho.html" class="botao-carrinho">
+            <img src="./imagens/icone-carrinho.png" alt="Ícone de Carrinho">
+            <span id="numero-carrinho">0</span>
+        </a>
+    </section>
     <footer>
         <p>&copy; 2023 CIKI - Moda Feminina</p>
     </footer>
 </body>
+
 </html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras - CIKI</title>
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/Celular.css">
+    <link rel="icon" href="./imagens/woman-clothes.png" type="image/png">
+</head>
+
+<body>
+    <section>
+        <div id="linha_loja">
+            <a class="link_sobre" href="Sobre_Nos.html">Sobre Nós</a>
+            <h1 id="titulo" onclick="redirectToHome()">CIKI</h1></a>
+            <a class="link_sobre" href="Contatos.html">Contato</a>
+        </div>
+    </section>
+    <!-- Conteúdo do Carrinho de Compras -->
+    <div id="carrinho">
+        <h2>Seu Carrinho de Compras</h2>
+        <ul id="lista-produtos">
+            <!-- Os produtos serão adicionados aqui dinamicamente com JavaScript -->
+        </ul>
+        <button type="button" id="limpar-carrinho" onclick="limparCarrinho()">Limpar Carrinho</button>
+    </div>
+    
+    <script src="./js/main.js"></script>
+</body>
+
+</html>

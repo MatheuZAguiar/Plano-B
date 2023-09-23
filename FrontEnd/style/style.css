@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
-
   body {
     font-family: 'Cinzel', sans-serif;
     display: flex;
@@ -40,6 +39,8 @@
 section{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100vw;
     border: 0px;
     margin-top: 20px;
@@ -114,11 +115,16 @@ section{
 
 /* Estilo para a seção de informações de contato */
 .info-contato {
+  display: flex;
+  width: 80%;
+  flex-direction: column;
+  justify-content: center;
   background-color: #f5f5f5; /* Cor de fundo */
   padding: 20px; /* Espaçamento interno */
   border-radius: 10px; /* Cantos arredondados */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  margin: 20px; /* Espaçamento externo */
+  margin: 20px;
+  margin-top: 8vh;
 }
 
 .info-contato h2 {
@@ -196,4 +202,250 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
+}
+#container_produtos{
+  display: flex;
+  width: 90vw;
+  justify-content: space-around;
+  align-items: center;
+  flex-flow: row wrap;
+}
+
+.produto {
+  display: flex;
+  width: 30%;
+  flex-direction: column;
+  text-align: center;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  margin: 2% auto;
+  border: 0;
+}
+
+.produto img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.produto h3 {
+  margin-top: 8px;
+  font-size: 1.2rem;
+}
+
+.produto p {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.produto button {
+  background-color: #007bff; /* Cor de fundo do botão */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease; /* Transição suave de cor de fundo */
+}
+
+.produto button:hover {
+  background-color: #0056b3; /* Cor de fundo do botão quando o mouse passa por cima */
+}
+
+/* Estilo para o botão de carrinho flutuante */
+.botao-carrinho {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: aliceblue; /* Cor de fundo do botão */
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  text-decoration: none; /* Remove sublinhado do link */
+  text-align: center;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease; /* Transição suave de cor de fundo */
+}
+
+.botao-carrinho:hover {
+  background-color: #0056b3; /* Cor de fundo do botão quando o mouse passa por cima */
+}
+.botao-carrinho img{
+  width: 60%;
+  height: 60%;
+}
+#numero-carrinho{
+  color: #333333;
+}
+
+/* Estilo para o container do carrinho */
+#carrinho {
+  background-color: #f7f7f7; /* Cor de fundo */
+  padding: 20px; /* Espaçamento interno */
+  border: 1px solid #ddd; /* Borda com cor suave */
+  border-radius: 5px; /* Cantos arredondados */
+  margin-top: 20px; /* Espaço superior */
+}
+
+/* Estilo para o título "Seu Carrinho de Compras" */
+#carrinho h2 {
+  font-size: 24px; /* Tamanho da fonte */
+  color: #333; /* Cor do texto */
+  margin-bottom: 10px; /* Espaço inferior */
+}
+
+/* Estilo para a lista de produtos no carrinho */
+#carrinho ul {
+  list-style: none; /* Remova os marcadores de lista */
+  padding: 0; /* Remova o preenchimento */
+}
+
+/* Estilo para cada item de produto na lista */
+#carrinho li {
+  margin-bottom: 10px; /* Espaço inferior entre os itens */
+  font-size: 18px; /* Tamanho da fonte */
+}
+
+/* Estilo para o botão "Limpar Carrinho" */
+#limpar-carrinho {
+  background-color: #007bff; /* Cor de fundo azul */
+  color: #fff; /* Cor do texto branco */
+  padding: 10px 20px; /* Espaçamento interno */
+  border: none; /* Sem borda */
+  border-radius: 5px; /* Cantos arredondados */
+  font-size: 16px; /* Tamanho da fonte */
+  cursor: pointer; /* Ícone de cursor de ponteiro */
+}
+
+/* Estilo para o botão "Limpar Carrinho" quando o mouse está sobre ele */
+#limpar-carrinho:hover {
+  background-color: #0056b3; /* Cor de fundo azul mais escura ao passar o mouse */
+}
+
+/* Estilo para a lista de produtos no carrinho */
+#lista-produtos {
+  list-style: none;
+  padding: 0;
+}
+
+/* Estilo para cada item do produto no carrinho */
+.produto-no-carrinho {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+/* Estilo para a imagem do produto no carrinho */
+.produto-no-carrinho img {
+  max-width: 100px;
+  margin-right: 10px;
+}
+
+/* Estilo para as informações do produto no carrinho */
+.info-produto {
+  flex-grow: 1;
+}
+
+/* Estilo para o botão de remover produto do carrinho */
+.produto-no-carrinho button {
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* Estilo para a lista de produtos no carrinho */
+.itens-checkout {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+/* Estilo para a imagem do produto */
+.itens-checkout img {
+  max-width: 100px;
+  margin-right: 10px;
+}
+
+/* Estilo para as informações do produto */
+.item-valor-checkout {
+  flex-grow: 1;
+}
+
+/* Estilo para o nome do produto */
+#produto-checkout {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Estilo para o preço subtotal */
+#valor-checkout {
+  font-size: 16px;
+  color: #666;
+}
+
+/* Estilo para a div de quantidade */
+.qtde-checkout {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+/* Estilo para os botões de incremento e decremento */
+#btnmenos-checkout,
+#btnmais-checkout {
+  background-color: #007bff;
+  color: #fff;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 0 5px;
+}
+
+/* Estilo para o input de quantidade */
+#counterValue {
+  font-size: 18px;
+  width: 30px;
+  text-align: center;
+}
+
+/* Estilo para o preço total */
+#valor-total-checkout {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Estilo para o botão de remover */
+.remover-checkout img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+/* Estilo para o botão de remover no hover */
+.remover-checkout:hover {
+  color: red;
+}
+
+/* Estilo para remover a borda do input de quantidade */
+.quantidade-input {
+  border: none;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 5px;
+  text-align: center;
+  width: 30px;
+  font-size: 16px;
 }

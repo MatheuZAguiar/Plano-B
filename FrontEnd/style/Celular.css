@@ -1,0 +1,29 @@
+@media (max-width: 768px) {
+    #container_produtos {
+      flex-direction: column; /* Altera para empilhar os produtos verticalmente */
+    }
+  
+    .produto {
+      width: 90%; /* Define a largura dos produtos para ocupar a largura do dispositivo */
+      margin: 2% auto; /* Centraliza os produtos na tela */
+      padding: 2%;
+    }
+  
+    .produto img {
+      width: 100%; /* Ajusta a imagem para ocupar toda a largura do produto */
+      height: auto;
+    }
+  
+    .produto h3 {
+      font-size: 1.2rem;
+    }
+  
+    .produto p {
+      font-size: 1rem;
+    }
+  
+    .produto button {
+      width: 100%; /* Faz o botão ocupar a largura do produto */
+    }
+  }
+  
