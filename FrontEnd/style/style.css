@@ -210,7 +210,6 @@ footer {
   align-items: center;
   flex-flow: row wrap;
 }
-
 .produto {
   display: flex;
   width: 30%;
@@ -220,6 +219,12 @@ footer {
   background-color: #f9f9f9;
   margin: 2% auto;
   border: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Adicione transições */
+}
+
+.produto:hover {
+  transform: scale(1.05); /* Aumenta o tamanho em 5% quando o mouse passa por cima */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra */
 }
 
 .produto img {
@@ -238,19 +243,20 @@ footer {
 }
 
 .produto button {
-  background-color: #007bff; /* Cor de fundo do botão */
+  background-color: #007bff;
   color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 1rem;
-  transition: background-color 0.3s ease; /* Transição suave de cor de fundo */
+  transition: background-color 0.3s ease;
 }
 
 .produto button:hover {
-  background-color: #0056b3; /* Cor de fundo do botão quando o mouse passa por cima */
+  background-color: #0056b3;
 }
+
 
 /* Estilo para o botão de carrinho flutuante */
 .botao-carrinho {
