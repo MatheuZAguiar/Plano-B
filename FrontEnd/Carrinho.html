@@ -17,16 +17,44 @@
             <h1 id="titulo" onclick="redirectToHome()">CIKI</h1></a>
             <a class="link_sobre" href="Contatos.html">Contato</a>
         </div>
+        <!-- Conteúdo do Carrinho de Compras -->
+        <div id="carrinho">
+            <h2>Seu Carrinho de Compras</h2>
+            <ul id="lista-produtos">
+                <!-- Os produtos serão adicionados aqui dinamicamente com JavaScript -->
+            </ul>
+            <div id="div_botoes">
+                <button type="button" id="limpar-carrinho" onclick="limparCarrinho()">Limpar Carrinho</button>
+                <!-- Botão para Passar para a Continuar -->
+                <button type="button" id="proximo-passo" onclick="irParaProximoPasso()">Continuar</button>
+            </div>
+        </div>
+
+        <!-- Formulário de Medidas das Clientes -->
+        <div id="formulario-medidas">
+            <h2>Medidas</h2>
+            <form id="form-medidas">
+                <label for="altura">Altura (cm):</label>
+                <input type="number" id="altura" name="altura" required><br>
+
+                <label for="busto">Busto (cm):</label>
+                <input type="number" id="busto" name="busto" required><br>
+
+                <label for="cintura">Cintura (cm):</label>
+                <input type="number" id="cintura" name="cintura" required><br>
+
+                <label for="quadril">Quadril (cm):</label>
+                <input type="number" id="quadril" name="quadril" required><br>
+
+                <!-- Botão para Finalizar Compra -->
+                <button type="submit" id="finalizar-compra" onclick="finalizarCompra()">Finalizar Compra</button>
+
+                <!-- Botão para Voltar ao Carrinho -->
+                <button type="button" id="voltar-ao-carrinho" onclick="voltarAoCarrinho()">Voltar ao Carrinho</button>
+            </form>
+        </div>
+
     </section>
-    <!-- Conteúdo do Carrinho de Compras -->
-    <div id="carrinho">
-        <h2>Seu Carrinho de Compras</h2>
-        <ul id="lista-produtos">
-            <!-- Os produtos serão adicionados aqui dinamicamente com JavaScript -->
-        </ul>
-        <button type="button" id="limpar-carrinho" onclick="limparCarrinho()">Limpar Carrinho</button>
-    </div>
-    
     <script src="./js/main.js"></script>
 </body>
 

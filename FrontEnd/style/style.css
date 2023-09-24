@@ -290,6 +290,7 @@ footer {
 
 /* Estilo para o container do carrinho */
 #carrinho {
+  width: 90vw;
   background-color: #f7f7f7; /* Cor de fundo */
   padding: 20px; /* Espaçamento interno */
   border: 1px solid #ddd; /* Borda com cor suave */
@@ -358,17 +359,9 @@ footer {
   flex-grow: 1;
 }
 
-/* Estilo para o botão de remover produto do carrinho */
-.produto-no-carrinho button {
-  background-color: #ff0000;
-  color: #fff;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
 /* Estilo para a lista de produtos no carrinho */
 .itens-checkout {
+  width: 100%;
   display: flex;
   align-items: center;
   margin-bottom: 20px;
@@ -429,14 +422,17 @@ footer {
 
 /* Estilo para o preço total */
 #valor-total-checkout {
+  text-align: center;
   font-size: 18px;
   font-weight: bold;
 }
 
 /* Estilo para o botão de remover */
 .remover-checkout img {
-  width: 20px;
-  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
   cursor: pointer;
 }
 
@@ -454,4 +450,87 @@ footer {
   text-align: center;
   width: 30px;
   font-size: 16px;
+}
+#div_botoes{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  width: 100%;
+}
+
+
+#valor-total{
+  color: #333;
+  width: 10%;
+  text-align: center;
+}
+
+#proximo-passo{
+    background-color: #4CAF50; /* Cor verde */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer; /* Ícone de cursor de ponteiro */
+}
+
+/* Estilo para o formulário de medidas */
+#formulario-medidas {
+  display: none; /* Inicialmente oculto */
+  width: 80vw;
+  margin-top: 2%;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+}
+
+#formulario-medidas h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+#formulario-medidas label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #555;
+}
+
+#formulario-medidas input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#formulario-medidas button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#formulario-medidas button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+#formulario-medidas button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo para o botão "Voltar ao Carrinho" */
+#voltar-ao-carrinho {
+  margin-top: 20px;
+  background-color: #ccc;
+  color: #333;
+}
+
+#voltar-ao-carrinho:hover {
+  background-color: #999;
 }

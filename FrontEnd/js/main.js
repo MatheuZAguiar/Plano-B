@@ -134,6 +134,13 @@ carrinhoDeCompras.forEach((produto) => {
   listaProdutos.appendChild(produtoItem);
 });
 
+function irParaProximoPasso() {
+  // Esconde o carrinho de compras
+  document.getElementById("carrinho").style.display = "none";
+  
+  // Exibe o formulário de medidas
+  document.getElementById("formulario-medidas").style.display = "block";
+}
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -145,23 +152,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Função para calcular o valor total com base nos elementos "valor-total-checkout"
 function calcularValorTotal() {
+  const elementosPrecoTotal = document.querySelectorAll("#valor-total-checkout");
   let valorTotal = 0;
 
-  carrinhoDeCompras.forEach((produto) => {
-    const elementoProduto = document.querySelector(`#produto-${produto.id}`);
-    const precoTotalText = elementoProduto.querySelector("#valor-total-checkout").textContent;
-    const precoTotal = parseFloat(precoTotalText.match(/R\$\s(\d+\.\d{2})/)[1]);
-    valorTotal += precoTotal;
+  elementosPrecoTotal.forEach((elemento) => {
+    const precoTexto = elemento.textContent.split("R$ ")[1];
+    const preco = parseFloat(precoTexto);
+    valorTotal += preco;
   });
 
   return valorTotal.toFixed(2);
 }
-
-
-// Função para atualizar o valor total exibido
+// Chame a função para calcular o valor total e atualizar o elemento "valor-total"
 function atualizarValorTotal() {
-  const valorTotalElement = document.getElementById("valor-total");
   const valorTotal = calcularValorTotal();
+  const valorTotalElement = document.getElementById("valor-total");
   valorTotalElement.textContent = `Valor Total: R$ ${valorTotal}`;
 }
 
@@ -286,3 +291,102 @@ function atualizarValorTotal() {
   // Chame a função para atualizar o valor total inicialmente
   atualizarValorTotal();
 });
+
+// Evento de envio do formulário de medidas
+document.getElementById("form-medidas").addEventListener("submit", function (event) {
+  event.preventDefault(); // Evita o envio padrão do formulário
+
+  // Verifique novamente se todos os campos estão preenchidos
+  const altura = document.getElementById("altura").value;
+  const busto = document.getElementById("busto").value;
+  const cintura = document.getElementById("cintura").value;
+  const quadril = document.getElementById("quadril").value;
+
+  if (altura && busto && cintura && quadril) {
+    // Aqui, você pode montar a mensagem com os dados da cliente, produtos desejados e medidas
+    const mensagem = `Oi! Seguem os detalhes da sua compra:\n\nProdutos: [Lista de produtos]\nMedidas: Altura: ${altura}cm, Busto: ${busto}cm, Cintura: ${cintura}cm, Quadril: ${quadril}cm`;
+
+    // Envie a mensagem via API do WhatsApp
+    enviarMensagemWhatsApp(mensagem);
+
+    window.open(linkWhatsApp, "_blank");
+  }
+});
+
+  // Verifique se todos os campos estão preenchidos
+  if (altura && busto && cintura && quadril) {
+    botaoFinalizar.disabled = false;
+  } else {
+    botaoFinalizar.disabled = true;
+  }
+
+
+// Função para finalizar a compra e abrir o WhatsApp com a mensagem em uma nova janela
+function finalizarCompra() {
+  const altura = document.getElementById("altura").value;
+  const busto = document.getElementById("busto").value;
+  const cintura = document.getElementById("cintura").value;
+  const quadril = document.getElementById("quadril").value;
+
+  // Construa a mensagem com os dados da cliente e a quantidade do produto
+  const mensagem = `Oi! Tenho interesse nos seguintes produtos:\n\n${listaProdutosParaMensagem()}\n\nMedidas:\nAltura: ${altura} cm\nBusto: ${busto} cm\nCintura: ${cintura} cm\nQuadril: ${quadril} cm`;
+
+  // Encode a mensagem para que possa ser usada na URL
+  const mensagemCodificada = encodeURIComponent(mensagem);
+
+  // Substitua o número de telefone pela URL correta do WhatsApp
+  const numeroWhatsApp = "45998143277"; // Substitua pelo número correto
+  const linkWhatsApp = `https://wa.me/${numeroWhatsApp}/?text=${mensagemCodificada}`;
+
+  // Abra o WhatsApp em uma nova janela ou guia
+  window.open(linkWhatsApp, "_blank");
+}
+
+// Função para criar uma lista de produtos formatada para a mensagem do WhatsApp
+function listaProdutosParaMensagem() {
+  const listaProdutos = carrinhoDeCompras.map((produto) => {
+    return `${produto.nome} - Quantidade: ${quantidadeProdutoNoCarrinho(produto.id)}`;
+  });
+
+  return listaProdutos.join("\n");
+}
+
+// Função para obter a quantidade de um produto no carrinho
+function quantidadeProdutoNoCarrinho(produtoId) {
+  const produtosComMesmoId = carrinhoDeCompras.filter((produto) => produto.id === produtoId);
+  return produtosComMesmoId.length;
+}
+
+
+// Função para criar uma lista de produtos formatada para a mensagem do WhatsApp
+function listaProdutosParaMensagem() {
+  const produtosAgrupados = agruparProdutosPorQuantidade(carrinhoDeCompras);
+
+  const listaProdutos = produtosAgrupados.map((produto) => {
+    return `${produto.nome} - Quantidade: ${produto.quantidade}`;
+  });
+
+  return listaProdutos.join("\n");
+}
+
+// Função para agrupar produtos pelo nome e contar a quantidade
+function agruparProdutosPorQuantidade(produtos) {
+  const produtosAgrupados = [];
+  produtos.forEach((produto) => {
+    const produtoExistente = produtosAgrupados.find((p) => p.nome === produto.nome);
+    if (produtoExistente) {
+      produtoExistente.quantidade++;
+    } else {
+      produtosAgrupados.push({ nome: produto.nome, quantidade: 1 });
+    }
+  });
+  return produtosAgrupados;
+}
+
+function voltarAoCarrinho() {
+  // Oculta o formulário de medidas
+  document.getElementById("formulario-medidas").style.display = "none";
+
+  // Mostra o carrinho de compras novamente
+  document.getElementById("carrinho").style.display = "block";
+}
