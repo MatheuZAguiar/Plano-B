@@ -94,12 +94,12 @@ function limparCarrinho() {
   // Remove o carrinho do localStorage
   localStorage.removeItem('carrinho');
 
-  // Atualiza a exibição do carrinho (no caso, a lista de produtos)
-  atualizarCarrinho();
-
-  // Atualiza o número de produtos no carrinho para 0
-  atualizarNumeroCarrinho();
+  // Verifica se o carrinho está vazio e recarrega a página se estiver
+  if (carrinhoDeCompras.length === 0) {
+    window.location.reload();
+  }
 }
+
 
 // Função para remover um produto do carrinho
 function removerProdutoDoCarrinho(produtoId) {
@@ -111,10 +111,8 @@ function removerProdutoDoCarrinho(produtoId) {
     carrinhoDeCompras.splice(indiceProduto, 1);
     // Atualize o carrinho no armazenamento local
     localStorage.setItem('carrinho', JSON.stringify(carrinhoDeCompras));
-    // Atualize a exibição do carrinho
-    atualizarCarrinho();
-    // Atualize o número de produtos no carrinho
-    atualizarNumeroCarrinho();
+    // Recarregue a página para refletir a remoção do produto
+    window.location.reload();
   }
 }
 
@@ -139,7 +137,7 @@ function irParaProximoPasso() {
   document.getElementById("carrinho").style.display = "none";
   
   // Exibe o formulário de medidas
-  document.getElementById("formulario-medidas").style.display = "block";
+  document.getElementById("formulario-medidas").style.display = "flex";
 }
 
 
@@ -292,44 +290,36 @@ function atualizarValorTotal() {
   atualizarValorTotal();
 });
 
-// Evento de envio do formulário de medidas
-document.getElementById("form-medidas").addEventListener("submit", function (event) {
-  event.preventDefault(); // Evita o envio padrão do formulário
-
-  // Verifique novamente se todos os campos estão preenchidos
-  const altura = document.getElementById("altura").value;
-  const busto = document.getElementById("busto").value;
-  const cintura = document.getElementById("cintura").value;
-  const quadril = document.getElementById("quadril").value;
-
-  if (altura && busto && cintura && quadril) {
-    // Aqui, você pode montar a mensagem com os dados da cliente, produtos desejados e medidas
-    const mensagem = `Oi! Seguem os detalhes da sua compra:\n\nProdutos: [Lista de produtos]\nMedidas: Altura: ${altura}cm, Busto: ${busto}cm, Cintura: ${cintura}cm, Quadril: ${quadril}cm`;
-
-    // Envie a mensagem via API do WhatsApp
-    enviarMensagemWhatsApp(mensagem);
-
-    window.open(linkWhatsApp, "_blank");
-  }
-});
-
-  // Verifique se todos os campos estão preenchidos
-  if (altura && busto && cintura && quadril) {
-    botaoFinalizar.disabled = false;
-  } else {
-    botaoFinalizar.disabled = true;
-  }
-
-
 // Função para finalizar a compra e abrir o WhatsApp com a mensagem em uma nova janela
 function finalizarCompra() {
-  const altura = document.getElementById("altura").value;
-  const busto = document.getElementById("busto").value;
-  const cintura = document.getElementById("cintura").value;
-  const quadril = document.getElementById("quadril").value;
+  const altura = parseFloat(document.getElementById("altura").value);
+  const busto = parseFloat(document.getElementById("busto").value);
+  const cintura = parseFloat(document.getElementById("cintura").value);
+  const quadril = parseFloat(document.getElementById("quadril").value);
 
-  // Construa a mensagem com os dados da cliente e a quantidade do produto
-  const mensagem = `Oi! Tenho interesse nos seguintes produtos:\n\n${listaProdutosParaMensagem()}\n\nMedidas:\nAltura: ${altura} cm\nBusto: ${busto} cm\nCintura: ${cintura} cm\nQuadril: ${quadril} cm`;
+  // Obtenha a quantidade, nome e valor subtotal de cada produto a partir dos elementos HTML
+  const produtosInfo = [];
+  const elementosQuantidade = document.querySelectorAll("#counterValue");
+  const elementosNomeProduto = document.querySelectorAll("#produto-checkout");
+  const elementosValorSubtotal = document.querySelectorAll("#valor-total-checkout");
+
+  elementosQuantidade.forEach((elemento, index) => {
+    const quantidade = parseInt(elemento.value, 10);
+    const nomeProduto = elementosNomeProduto[index].textContent;
+    const valorSubtotalTexto = elementosValorSubtotal[index].textContent.split("R$ ")[1];
+    const valorSubtotal = parseFloat(valorSubtotalTexto);
+    produtosInfo.push({ quantidade, nomeProduto, valorSubtotal });
+  });
+
+  // Calcula o valor total somando os subtotais de todos os produtos
+  const valorTotal = produtosInfo.reduce((total, produto) => total + produto.valorSubtotal, 0);
+
+  // Construa a mensagem com os dados da cliente, produtos, quantidades, nomes, valores subtotal e valor total
+  const mensagem = `Oi! Tenho interesse nos seguintes produtos:\n\n${listaProdutosParaMensagem(
+    produtosInfo
+  )}\n\nMedidas:\nAltura: ${altura} cm\nBusto: ${busto} cm\nCintura: ${cintura} cm\nQuadril: ${quadril} cm\nValor Total: R$ ${valorTotal.toFixed(
+    2
+  )}`;
 
   // Encode a mensagem para que possa ser usada na URL
   const mensagemCodificada = encodeURIComponent(mensagem);
@@ -342,32 +332,48 @@ function finalizarCompra() {
   window.open(linkWhatsApp, "_blank");
 }
 
-// Função para criar uma lista de produtos formatada para a mensagem do WhatsApp
-function listaProdutosParaMensagem() {
-  const listaProdutos = carrinhoDeCompras.map((produto) => {
-    return `${produto.nome} - Quantidade: ${quantidadeProdutoNoCarrinho(produto.id)}`;
+function listaProdutosParaMensagem(produtosInfo) {
+  const produtos = produtosInfo.map((produtoInfo) => {
+    const quantidade = produtoInfo.quantidade; // Pegue a quantidade do objeto produtosInfo
+    return `${quantidade}x ${produtoInfo.nomeProduto} - Subtotal: R$ ${produtoInfo.valorSubtotal.toFixed(2)}`;
   });
 
-  return listaProdutos.join("\n");
-}
-
-// Função para obter a quantidade de um produto no carrinho
-function quantidadeProdutoNoCarrinho(produtoId) {
-  const produtosComMesmoId = carrinhoDeCompras.filter((produto) => produto.id === produtoId);
-  return produtosComMesmoId.length;
+  return produtos.join("\n");
 }
 
 
-// Função para criar uma lista de produtos formatada para a mensagem do WhatsApp
-function listaProdutosParaMensagem() {
-  const produtosAgrupados = agruparProdutosPorQuantidade(carrinhoDeCompras);
+// Função para verificar se todos os campos do formulário estão preenchidos
+function verificarCampos() {
+  const altura = parseFloat(document.getElementById("altura").value);
+  const busto = parseFloat(document.getElementById("busto").value);
+  const cintura = parseFloat(document.getElementById("cintura").value);
+  const quadril = parseFloat(document.getElementById("quadril").value);
+  const botaoFinalizar = document.getElementById("finalizar-compra");
 
-  const listaProdutos = produtosAgrupados.map((produto) => {
-    return `${produto.nome} - Quantidade: ${produto.quantidade}`;
-  });
-
-  return listaProdutos.join("\n");
+  if (!isNaN(altura) && !isNaN(busto) && !isNaN(cintura) && !isNaN(quadril) &&
+      altura >= 0 && busto >= 0 && cintura >= 0 && quadril >= 0) {
+    botaoFinalizar.disabled = false;
+    const botaoFinalizarCompra = document.getElementById("finalizar-compra");
+botaoFinalizarCompra.addEventListener("click", finalizarCompra);
+  } else {
+    botaoFinalizar.disabled = true;
+  }
 }
+
+// Adicionar um ouvinte de eventos de entrada para os campos
+const campos = document.querySelectorAll("input[type=number]");
+campos.forEach((campo) => {
+  campo.addEventListener("input", verificarCampos);
+});
+
+function voltarAoCarrinho() {
+  // Oculta o formulário de medidas
+  document.getElementById("formulario-medidas").style.display = "none";
+
+  // Mostra o carrinho de compras novamente
+  document.getElementById("carrinho").style.display = "block";
+}
+
 
 // Função para agrupar produtos pelo nome e contar a quantidade
 function agruparProdutosPorQuantidade(produtos) {
@@ -381,12 +387,4 @@ function agruparProdutosPorQuantidade(produtos) {
     }
   });
   return produtosAgrupados;
-}
-
-function voltarAoCarrinho() {
-  // Oculta o formulário de medidas
-  document.getElementById("formulario-medidas").style.display = "none";
-
-  // Mostra o carrinho de compras novamente
-  document.getElementById("carrinho").style.display = "block";
 }

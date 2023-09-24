@@ -478,27 +478,30 @@ footer {
 /* Estilo para o formulário de medidas */
 #formulario-medidas {
   display: none; /* Inicialmente oculto */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 80vw;
+  height: 80vh;
   margin-top: 2%;
-  border: 1px solid #ccc;
-  background-color: #f5f5f5;
 }
 
 #formulario-medidas h2 {
   font-size: 1.5rem;
   color: #333;
   margin-bottom: 20px;
+  color: aliceblue;
 }
-
-#formulario-medidas label {
-  display: block;
+.nome_label{
+  display: flex;
+  width: 100%;
   margin-bottom: 10px;
   font-weight: bold;
-  color: #555;
+  color: aliceblue;
 }
 
 #formulario-medidas input[type="number"] {
-  width: 100%;
+  width: 20vw;
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ccc;
@@ -513,6 +516,7 @@ footer {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  margin-top: 2%;
 }
 
 #formulario-medidas button:disabled {
